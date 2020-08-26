@@ -133,9 +133,6 @@ TARGET_RECOVERY_FSTAB := $(PLATFORM_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_oneplus
 TARGET_RELEASETOOLS_EXTENSIONS := $(PLATFORM_PATH)
 
-# RIL
-TARGET_USES_OLD_MNC_FORMAT := true
-
 # Root
 BOARD_ROOT_EXTRA_SYMLINKS += /mnt/vendor/persist:/persist
 
