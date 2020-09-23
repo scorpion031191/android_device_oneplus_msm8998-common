@@ -447,6 +447,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     vendor.lineage.trust@1.0-service
 
+# tri-state-key
+PRODUCT_PACKAGES += \
+    tri-state-key_daemon
+
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.basic
