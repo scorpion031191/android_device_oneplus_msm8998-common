@@ -34,6 +34,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <sys/sysinfo.h>
 #include <sys/types.h>
 
 #include <android-base/file.h>
@@ -123,6 +124,30 @@ void init_fingerprint_properties()
     }
 }
 
+void load_dalvikvm_properties()
+{
+    struct sysinfo sys;
+
+    sysinfo(&sys);
+    if (sys.totalram < 7000ull * 1024 * 1024) {
+        //6GB RAM
+        property_override("dalvik.vm.heapstartsize", "16m");
+        property_override("dalvik.vm.heaptargetutilization", "0.5");
+        property_override("dalvik.vm.heapmaxfree", "32m");
+        property_override("dalvik.vm.heapgrowthlimit", "256m");
+        property_override("dalvik.vm.heapsize", "512m");
+        property_override("dalvik.vm.heapminfree", "8m");
+    } else {
+        //8GB RAM
+        property_override("dalvik.vm.heapstartsize", "24m");
+        property_override("dalvik.vm.heaptargetutilization", "0.46");
+        property_override("dalvik.vm.heapmaxfree", "48m");
+        property_override("dalvik.vm.heapgrowthlimit", "256m");
+        property_override("dalvik.vm.heapsize", "512m");
+        property_override("dalvik.vm.heapminfree", "8m");
+    }
+}
+
 void init_alarm_boot_properties()
 {
     char const *boot_reason_file = "/proc/sys/kernel/boot_reason";
@@ -192,4 +217,5 @@ void vendor_load_properties() {
     init_target_properties();
     init_fingerprint_properties();
     init_alarm_boot_properties();
+    load_dalvikvm_properties();
 }
