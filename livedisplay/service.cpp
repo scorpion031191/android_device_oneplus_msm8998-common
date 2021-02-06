@@ -22,10 +22,14 @@
 #include <livedisplay/sdm/PictureAdjustment.h>
 
 #include "AdaptiveBacklight.h"
+#include "AntiFlicker.h"
 #include "DisplayModes.h"
 
+using ::vendor::lineage::livedisplay::V2_0::IAntiFlicker;
 using ::vendor::lineage::livedisplay::V2_0::IDisplayModes;
 using ::vendor::lineage::livedisplay::V2_0::IPictureAdjustment;
+using ::vendor::lineage::livedisplay::V2_0::ISunlightEnhancement;
+using ::vendor::lineage::livedisplay::V2_0::implementation::AntiFlicker;
 using ::vendor::lineage::livedisplay::V2_0::implementation::DisplayModes;
 using ::vendor::lineage::livedisplay::V2_0::sdm::AdaptiveBacklight;
 using ::vendor::lineage::livedisplay::V2_0::sdm::PictureAdjustment;
@@ -38,12 +42,30 @@ int main() {
     android::sp<IPictureAdjustment> paService = new PictureAdjustment(controller);
 
     LOG(DEBUG) << "LiveDisplay HAL service is starting.";
+    sp<AntiFlicker> antiFlicker = new AntiFlicker();
+    sp<DisplayModes> dm = new DisplayModes();
+    sp<PictureAdjustment> pa = new PictureAdjustment(controller);
+    sp<SunlightEnhancement> se = new SunlightEnhancement();
 
     android::hardware::configureRpcThreadpool(1 /*threads*/, true /*callerWillJoin*/);
 
     if (abService->registerAsService() != android::OK) {
         LOG(ERROR) << "Cannot register adaptive backlight HAL service.";
         return 1;
+    // AntiFlicker service
+    status = antiFlicker->registerAsService();
+    if (status != OK) {
+        LOG(ERROR) << "Could not register service for LiveDisplay HAL AntiFlicker Iface ("
+                   << status << ")";
+        goto shutdown;
+    }
+
+    // DisplayModes service
+    status = dm->registerAsService();
+    if (status != OK) {
+        LOG(ERROR) << "Could not register service for LiveDisplay HAL DisplayModes Iface ("
+                   << status << ")";
+        goto shutdown;
     }
 
     if (modesService->registerAsService() != android::OK) {
