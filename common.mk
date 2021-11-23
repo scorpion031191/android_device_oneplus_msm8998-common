@@ -99,6 +99,7 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.effect@6.0-impl:32 \
     android.hardware.audio.service \
     audio.primary.msm8998 \
+    audio.hearing_aid.default \
     audio.r_submix.default \
     audio.usb.default \
     libaudio-resampler \
@@ -111,6 +112,28 @@ PRODUCT_PACKAGES += \
     libspkrprot \
     libssrec \
     libvolumelistener
+
+# For audio.primary
+PRODUCT_PACKAGES += \
+    libtinyalsa \
+    libaudioroute
+
+# Audio effects
+PRODUCT_PACKAGES += \
+    libqcomvisualizer \
+    libqcomvoiceprocessing \
+    libqcompostprocbundle
+
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.dsp@1.0 \
+    liblistenhardware \
+    libacdbloader \
+    libacdbmapper \
+    libacdbrtac \
+    libadiertac \
+    libadsprpc \
+    libaudcal \
+    libaudioalsa
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
@@ -472,3 +495,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libaacwrapper \
     libnl
+
+# Inherit audio products for msm8998
+$(call inherit-product, vendor/qcom/opensource/audio-hal/primary-hal/configs/msm8998/msm8998.mk)
