@@ -22,10 +22,9 @@
 # definition file).
 #
 
-# Inherit from oppo-common
--include device/oppo/common/BoardConfigCommon.mk
-
 PLATFORM_PATH := device/oneplus/msm8998-common
+
+TARGET_SPECIFIC_HEADER_PATH := $(PLATFORM_PATH)/include
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := msm8998
@@ -137,9 +136,6 @@ TARGET_RELEASETOOLS_EXTENSIONS := $(PLATFORM_PATH)
 TARGET_USES_OLD_MNC_FORMAT := true
 
 # Root
-BOARD_ROOT_EXTRA_SYMLINKS += /vendor/dsp:/dsp
-BOARD_ROOT_EXTRA_SYMLINKS += /vendor/bt_firmware:/bt_firmware
-BOARD_ROOT_EXTRA_SYMLINKS += /vendor/firmware_mnt:/firmware
 BOARD_ROOT_EXTRA_SYMLINKS += /mnt/vendor/persist:/persist
 
 # Security
@@ -172,7 +168,6 @@ WIFI_DRIVER_FW_PATH_P2P := "p2p"
 WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
-WIFI_HIDL_FEATURE_DISABLE_AP_MAC_RANDOMIZATION := true
 
 # inherit from the proprietary version
 -include vendor/oneplus/msm8998-common/BoardConfigVendor.mk

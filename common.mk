@@ -109,7 +109,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
     $(LOCAL_PATH)/audio/audio_output_policy.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_output_policy.conf \
     $(LOCAL_PATH)/audio/audio_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_platform_info.xml \
-    $(LOCAL_PATH)/audio/audio_tuning_mixer.txt:$(TARGET_COPY_OUT_VENDOR)/etc/audio_tuning_mixer.txt \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_mixer_paths.xml \
     $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_platform_info.xml
 
@@ -131,22 +130,15 @@ PRODUCT_PACKAGES += \
 # Bluetooth
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio@2.0-impl:32 \
-    audio.bluetooth.default
+    audio.bluetooth.default \
+    vendor.qti.hardware.btconfigstore@1.0.vendor
 
 # Camera
 PRODUCT_PACKAGES += \
-    android.frameworks.displayservice@1.0_32 \
     android.hardware.camera.device@3.4:64 \
-    android.hardware.camera.device@3.5:64 \
-    android.hardware.camera.provider@2.4:64 \
-    android.hardware.camera.provider@2.5:64 \
     android.hardware.camera.provider@2.4-impl:32 \
     android.hardware.camera.provider@2.4-service \
-    camera.device@1.0-impl \
-    camera.device@3.2-impl \
-    Snap
-
-PRODUCT_PACKAGES += \
+    Snap \
     vendor.qti.hardware.camera.device@1.0
 
 # Component overrides
@@ -164,13 +156,17 @@ PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-service \
     gralloc.msm8998 \
     hwcomposer.msm8998 \
-    memtrack.msm8998 \
     libdisplayconfig \
-    libqdMetaData.system
+    libqdMetaData.system \
+    libtinyxml \
+    memtrack.msm8998
 
 PRODUCT_PACKAGES += \
     vendor.display.config@1.9 \
     vendor.display.config@1.9_vendor
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/FOSSConfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/FOSSConfig.xml
 
 # Doze
 PRODUCT_PACKAGES += \
@@ -235,13 +231,13 @@ PRODUCT_PACKAGES += \
     libhwbinder.vendor
 
 # Init
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom \
-    $(LOCAL_PATH)/rootdir/etc/init.devstart.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.devstart.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.rc \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.qcom.usb.rc \
-    $(LOCAL_PATH)/rootdir/etc/init.radio.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.radio.sh \
-    $(LOCAL_PATH)/rootdir/etc/ueventd.qcom.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc
+PRODUCT_PACKAGES += \
+    fstab.qcom \
+    init.devstart.sh \
+    init.qcom.rc \
+    init.qcom.usb.rc \
+    init.radio.sh \
+    ueventd.qcom.rc
 
 # IFAA (Fingerprint support for Alipay)
 PRODUCT_PACKAGES += \
@@ -257,10 +253,6 @@ PRODUCT_COPY_FILES += \
 # IRSC
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
-
-# Keyboard
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/idc/gf_input.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/gf_input.idc
 
 # Keymaster
 PRODUCT_PACKAGES += \
@@ -316,10 +308,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     SecureElement
 
-# OEM Unlock reporting
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.oem_unlock_supported=1
-
 # OMX
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
@@ -345,7 +333,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.3-service.oneplus_msm8998
+    android.hardware.power-service.oneplus_msm8998-libperfmgr
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
@@ -410,16 +398,18 @@ PRODUCT_SHIPPING_API_LEVEL := 25
 # Soong
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
-    hardware/google/pixel
+    hardware/google/interfaces \
+    hardware/google/pixel \
+    hardware/oneplus
 
 # Tetheroffload
 PRODUCT_PACKAGES += \
     ipacm \
     IPACM_cfg.xml
 
-# Touch
+# Tri-state-key
 PRODUCT_PACKAGES += \
-    vendor.lineage.touch@1.0-service.oneplus_msm8998
+    KeyHandler
 
 # Trust HAL
 PRODUCT_PACKAGES += \
@@ -474,9 +464,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libaacwrapper \
     libnl
-
-# Inherit from oppo-common
-$(call inherit-product, device/oppo/common/common.mk)
 
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
