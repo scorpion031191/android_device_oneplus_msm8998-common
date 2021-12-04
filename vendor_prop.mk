@@ -223,6 +223,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.enable_hwc_vds=1 \
     debug.sf.latch_unsignaled=1 \
     debug.gralloc.enable_fb_ubwc=1 \
+    debug.hwui.use_buffer_age=false \
+    debug.renderengine.backend=skiaglthreaded \
     dev.pm.dyn_samplingrate=1 \
     persist.demo.hdmirotationlock=false \
     persist.debug.wfd.enable=1 \
@@ -236,7 +238,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.display.disable_skip_validate=1 \
     vendor.display.enable_default_color_mode=1 \
     vendor.display.perf_hint_window=50 \
-    debug.hwui.use_buffer_age=false
+    renderthread.skia.reduceopstasksplitting=true
 
 # IOP
 PRODUCT_PROPERTY_OVERRIDES += \
