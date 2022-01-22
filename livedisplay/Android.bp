@@ -12,9 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-cc_defaults {
-    name: "livedisplay_oneplus_msm8998",
+cc_binary {
+    name: "vendor.lineage.livedisplay@2.0-service.oneplus_msm8998",
     defaults: ["hidl_defaults"],
+    init_rc: ["vendor.lineage.livedisplay@2.0-service.oneplus_msm8998.rc"],
+    vintf_fragments: ["vendor.lineage.livedisplay@2.0-service.oneplus_msm8998.xml"],
     relative_install_path: "hw",
     srcs: [
         ":vendor.lineage.livedisplay@2.0-sdm-pa",
@@ -22,14 +24,12 @@ cc_defaults {
         "AdaptiveBacklight.cpp",
         "AntiFlicker.cpp",
         "DisplayModes.cpp",
-        "SunlightEnhancement.cpp",
         "service.cpp",
     ],
     shared_libs: [
         "libbase",
         "libbinder",
         "libcutils",
-        "libdl",
         "libhidlbase",
         "libutils",
         "vendor.lineage.livedisplay@2.0",
@@ -37,12 +37,5 @@ cc_defaults {
     header_libs: [
         "vendor.lineage.livedisplay@2.0-sdm-headers",
     ],
-}
-
-cc_binary {
-    name: "vendor.lineage.livedisplay@2.0-service.oneplus_msm8998",
-    init_rc: ["vendor.lineage.livedisplay@2.0-service.oneplus_msm8998.rc"],
-    vintf_fragments: ["vendor.lineage.livedisplay@2.0-service.oneplus_msm8998.xml"],
-    defaults: ["livedisplay_oneplus_msm8998"],
     proprietary: true,
 }
