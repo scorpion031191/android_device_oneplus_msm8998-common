@@ -47,16 +47,8 @@
 #include "vendor_init.h"
 #include "property_service.h"
 
-static constexpr const char* kDcDimmingBrightnessPath =
-        "/proc/flicker_free/min_brightness";
-static constexpr const char* kProjectNamePath =
-        "/sys/project_info/project_name";
-static constexpr const char* kSensorVersionPath =
-        "/sys/devices/soc/soc:fingerprint_detect/sensor_version";
-
 using android::base::Trim;
 using android::base::ReadFileToString;
-using android::base::WriteStringToFile;
 
 void property_override(char const prop[], char const value[], bool add = true)
 {
@@ -66,61 +58,6 @@ void property_override(char const prop[], char const value[], bool add = true)
         __system_property_update(pi, value, strlen(value));
     } else if (add) {
         __system_property_add(prop, strlen(prop), value, strlen(value));
-    }
-}
-
-void init_target_properties()
-{
-    std::string device;
-    bool unknownDevice = true;
-
-    if (ReadFileToString(DEVINFO_FILE, &device)) {
-    if (ReadFileToString(kProjectNamePath, &device)) {
-        LOG(INFO) << "Device info: " << device;
-
-        if (!strncmp(device.c_str(), "16859", 5)) {
-            // Oneplus 5
-            property_override("ro.display.series", "OnePlus 5");
-            WriteStringToFile("66", kDcDimmingBrightnessPath);
-            unknownDevice = false;
-        }
-        else if (!strncmp(device.c_str(), "17801", 5)) {
-            // Oneplus 5T
-            property_override("ro.display.series", "OnePlus 5T");
-            WriteStringToFile("370", kDcDimmingBrightnessPath);
-            unknownDevice = false;
-        }
-
-        property_override("vendor.boot.project_name", device.c_str());
-    }
-    else {
-        LOG(ERROR) << "Unable to read device info from " << DEVINFO_FILE;
-        LOG(ERROR) << "Unable to read device info from " << kProjectNamePath;
-    }
-
-    if (unknownDevice) {
-        property_override("ro.display.series", "UNKNOWN");
-    }
-}
-
-void init_fingerprint_properties()
-{
-    std::string sensor_version;
-
-    if (ReadFileToString(kSensorVersionPath, &sensor_version)) {
-        LOG(INFO) << "Loading Fingerprint HAL for sensor version " << sensor_version;
-        if (Trim(sensor_version) == "1" || Trim(sensor_version) == "2") {
-            property_override("ro.hardware.fingerprint", "fpc");
-        }
-        else if (Trim(sensor_version) == "3") {
-            property_override("ro.hardware.fingerprint", "goodix");
-        }
-        else {
-            LOG(ERROR) << "Unsupported fingerprint sensor: " << sensor_version;
-        }
-    }
-    else {
-        LOG(ERROR) << "Failed to detect sensor version";
     }
 }
 
@@ -191,6 +128,4 @@ void init_alarm_boot_properties()
 void vendor_load_properties() {
     LOG(INFO) << "Loading vendor specific properties";
     init_alarm_boot_properties();
-    init_target_properties();
-    init_fingerprint_properties();
 }
