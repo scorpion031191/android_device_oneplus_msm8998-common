@@ -526,5 +526,8 @@ PRODUCT_PACKAGES += \
     timekeep \
     TimeKeep
 
+PRODUCT_COPY_FILES += \
+    kernel/oneplus/prebuilt/Image.gz-dtb:kernel
+
 # Inherit audio products for msm8998
 $(call inherit-product, vendor/qcom/opensource/audio-hal/primary-hal/configs/msm8998/msm8998.mk)
