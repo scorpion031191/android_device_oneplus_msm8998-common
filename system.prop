@@ -65,3 +65,6 @@ persist.dbg.wfc_avail_ovr=1
 
 # Wi-Fi
 wifi.interface=wlan0
+
+# Updater
+lineage.updater.uri=https://raw.githubusercontent.com/SirRGB/ota_config/kasumi-v1/{device}.json
