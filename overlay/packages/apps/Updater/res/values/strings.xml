@@ -19,5 +19,8 @@
           {type} - Build type
           {incr} - Incremental version
     -->
-    <string name="updater_server_url" translatable="false">https://raw.githubusercontent.com/SirRGB/ota_config/crdroid-7/{device}.json</string>
+
+	<string name="updater_server_url" translatable="false">https://raw.githubusercontent.com/SirRGB/ota_config/crdroid-7/{device}.json</string>
+	<string name="changelog_url" translatable="false">https://raw.githubusercontent.com/SirRGB/ota_config/crdroid-7/{device}.txt</string>
+
 </resources>
