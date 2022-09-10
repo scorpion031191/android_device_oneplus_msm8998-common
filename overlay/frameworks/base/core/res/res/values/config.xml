@@ -641,4 +641,10 @@
 
     <!-- Whether power menu advanced reboot enabled by default -->
     <bool name="config_powermenuadvanceddefault">true</bool>
+
+    <!-- Whether device has physical tri state switch -->
+    <bool name="config_hasAlertSlider">true</bool>
+
+    <!-- Whether device supports dash charging -->
+    <bool name="config_hasDashCharger">true</bool>
 </resources>
