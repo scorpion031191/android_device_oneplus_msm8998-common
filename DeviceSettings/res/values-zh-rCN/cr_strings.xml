@@ -14,9 +14,6 @@
 <resources>
     <string name="advanced_settings">一加设置</string>
     <string name="advanced_settings_summary">调整一加特定设备设置</string>
-    <!-- Display modes -->
-    <string name="dc_dimming_enable_summary"></string> 
-    <string name="dc_dimming_enable_title">DC-Dimming</string>
     <!-- Notification slider -->
     <string name="notification_slider_category_title">通知滑块</string>
     <string name="notification_slider_selection_dialog_title">操作</string>

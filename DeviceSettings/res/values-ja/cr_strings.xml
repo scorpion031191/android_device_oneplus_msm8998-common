@@ -14,9 +14,6 @@
 <resources>
     <string name="advanced_settings">OnePlus 設定</string>
     <string name="advanced_settings_summary">OnePlus 専用の端末設定を調整する</string>
-    <!-- Display modes -->
-    <string name="dc_dimming_enable_summary"></string>
-    <string name="dc_dimming_enable_title">DC 調光</string>
     <!-- Notification slider -->
     <string name="notification_slider_category_title">通知スライダー</string>
     <string name="notification_slider_selection_dialog_title">アクション</string>

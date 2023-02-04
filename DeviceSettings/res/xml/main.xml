@@ -11,14 +11,6 @@
      limitations under the License.
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory>
-        <SwitchPreference
-            android:key="dc"
-            android:summary="@string/dc_dimming_enable_summary"
-            android:title="@string/dc_dimming_enable_title" />
-
-    </PreferenceCategory>
-
     <PreferenceCategory
         android:key="slider"
         android:title="@string/notification_slider_category_title">

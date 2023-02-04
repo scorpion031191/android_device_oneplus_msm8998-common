@@ -14,9 +14,6 @@
 <resources>
     <string name="advanced_settings">Definições OnePlus</string>
     <string name="advanced_settings_summary">Ajustar definições específicas de dispositivos OnePlus</string>
-    <!-- Display modes -->
-    <string name="dc_dimming_enable_summary"></string>
-    <string name="dc_dimming_enable_title">DC - Escurecendo</string>
     <!-- Notification slider -->
     <string name="notification_slider_category_title">Controle deslizante de notificação</string>
     <string name="notification_slider_selection_dialog_title">Açao</string>
