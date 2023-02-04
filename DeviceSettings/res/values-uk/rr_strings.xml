@@ -14,9 +14,6 @@
 <resources>
     <string name="advanced_settings">Налаштування OnePlus</string>
     <string name="advanced_settings_summary">Відрегулюйте налаштування пристрою OnePlus</string>
-    <!-- Display modes -->
-    <string name="dc_dimming_enable_summary"></string>
-    <string name="dc_dimming_enable_title">DC-Dimming</string>
     <!-- Notification slider -->
     <string name="notification_slider_category_title">Повзунок сповіщень</string>
     <string name="notification_slider_selection_dialog_title">Дії</string>

@@ -60,18 +60,6 @@
             </intent-filter>
         </receiver>
 
-        <!-- Quick Settings Tiles -->
-        <service
-            android:name="com.aosip.device.DeviceSettings.DCModeTileService"
-            android:icon="@drawable/ic_dimming_off"
-            android:label="@string/dc_dimming_enable_title"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
-            <intent-filter>
-                <action
-                    android:name="android.service.quicksettings.action.QS_TILE"/>
-            </intent-filter>
-        </service>
-
         <!-- Search Provider -->
         <provider
             android:name=".ConfigPanelSearchIndexablesProvider"

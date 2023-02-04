@@ -14,9 +14,6 @@
 <resources>
     <string name="advanced_settings">OnePlus Settings</string>
     <string name="advanced_settings_summary">Adjust OnePlus specific device settings</string>
-    <!-- Display modes -->
-    <string name="dc_dimming_enable_summary"></string>  
-    <string name="dc_dimming_enable_title">DC-Dimming</string>
     <!-- Notification slider -->
     <string name="notification_slider_category_title">Notification slider</string>
     <string name="notification_slider_selection_dialog_title">Action</string>

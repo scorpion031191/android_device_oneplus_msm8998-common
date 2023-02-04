@@ -14,9 +14,6 @@
 <resources>
     <string name="advanced_settings">Cài đặt OnePlus</string>
     <string name="advanced_settings_summary">Điều chỉnh cài đặt cho thiết bị OnePlus</string>
-    <!-- Display modes -->
-    <string name="dc_dimming_enable_summary"></string>
-    <string name="dc_dimming_enable_title">DC - Làm mờ</string>
     <!-- Notification slider -->
     <string name="notification_slider_category_title">Thanh trượt thông báo</string>
     <string name="notification_slider_selection_dialog_title">Hành động</string>
