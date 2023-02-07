@@ -92,7 +92,6 @@ PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-service \
     android.hardware.audio.effect@5.0-impl \
     android.hardware.soundtrigger@2.2-impl \
-    audio.a2dp.default \
     audio_amplifier.msm8998 \
     audio.primary.msm8998 \
     audio.r_submix.default \
@@ -101,8 +100,7 @@ PRODUCT_PACKAGES += \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
-    libvolumelistener \
-    tinymix
+    libvolumelistener
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
@@ -185,7 +183,6 @@ PRODUCT_PACKAGES += \
     libdisplayconfig \
     libhwc2on1adapter \
     libgenlock \
-    liboverlay \
     libtinyxml \
     libqdMetaData \
     libqdMetaData.system \
